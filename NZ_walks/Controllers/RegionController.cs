@@ -91,5 +91,32 @@ namespace NZ_walks.Controllers
             };
             return CreatedAtAction(nameof(GetById), new{ id = reqDomain.Id},clientDto);
         }
+        //Update Region
+        [HttpPut]
+        [Route("{id:Guid}")]
+        public IActionResult Update([FromRoute] Guid id, [FromBody] UpdateRegionReqDTO reqDTO)
+        {
+            //check if region exists
+            Region reqDomain = dbContext.Regions.FirstOrDefault(x=>x.Id == id);
+            if (reqDomain == null)
+            {
+                return NotFound();
+            }
+            //map dto to domain model
+            reqDomain.Code = reqDTO.Code;
+            reqDomain.Name = reqDTO.Name;
+            reqDomain.RegionImageUrl = reqDTO.RegionImageUrl;
+            dbContext.SaveChanges();
+
+
+            RegionDTO clientDTO = new RegionDTO
+            {
+                Id = reqDomain.Id,
+                Code = reqDomain.Code,
+                Name = reqDomain.Name,
+                RegionImageUrl = reqDomain.RegionImageUrl
+            };
+            return Ok(clientDTO);
+        }
     }
-}   
+}
