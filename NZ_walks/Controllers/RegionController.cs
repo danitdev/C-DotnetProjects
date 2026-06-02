@@ -59,7 +59,7 @@ namespace NZ_walks.Controllers
                 Id = regionDomain.Id,
                 Name = regionDomain.Name,
                 Code = regionDomain.Code,
-              RegionImageUrl = regionDomain.RegionImageUrl  
+                RegionImageUrl = regionDomain.RegionImageUrl  
 
             };
             return Ok(regionDto);
@@ -97,7 +97,7 @@ namespace NZ_walks.Controllers
         public IActionResult Update([FromRoute] Guid id, [FromBody] UpdateRegionReqDTO reqDTO)
         {
             //check if region exists
-            Region reqDomain = dbContext.Regions.FirstOrDefault(x=>x.Id == id);
+            Region reqDomain = dbContext.Regions.FirstOrDefault(x => x.Id == id);
             if (reqDomain == null)
             {
                 return NotFound();
@@ -117,6 +117,29 @@ namespace NZ_walks.Controllers
                 RegionImageUrl = reqDomain.RegionImageUrl
             };
             return Ok(clientDTO);
+        }
+        //delete verb
+        [HttpDelete]
+        [Route("{id:Guid}")]
+        public IActionResult Delete([FromRoute] Guid id )
+        {
+            Region reqDomain = dbContext.Regions.FirstOrDefault(x => x.Id == id);
+            if (reqDomain == null)
+            {
+                return NotFound();
+            }
+            dbContext.Regions.Remove(reqDomain);
+            dbContext.SaveChanges();
+            //optional : return deleted region back
+            //map domain model to dto
+            RegionDTO reqDTO = new RegionDTO
+            {
+                Id = reqDomain.Id,
+                Code = reqDomain.Code,
+                Name = reqDomain.Name,
+                RegionImageUrl = reqDomain.RegionImageUrl
+            };
+            return Ok(reqDTO);
         }
     }
 }
