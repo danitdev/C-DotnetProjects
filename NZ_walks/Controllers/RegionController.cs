@@ -20,12 +20,10 @@ namespace NZ_walks.Controllers
     {
         //i am making a private reaonly var so i can use the
         //db context in another function other than constructor.
-        private readonly NZ_walksDbContext dbContext;
         private readonly IRegionRepository regionRepository;
         //making constructor so that i inject db context to this code
-        public RegionController(NZ_walksDbContext dbContext,IRegionRepository regionRepository)
+        public RegionController(IRegionRepository regionRepository)
         {
-            this.dbContext = dbContext;
             this.regionRepository = regionRepository;
         }
         //hardcoded it for now until learn more
