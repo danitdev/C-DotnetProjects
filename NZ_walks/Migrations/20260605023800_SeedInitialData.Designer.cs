@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NZ_walks.Data;
 
@@ -11,9 +12,11 @@ using NZ_walks.Data;
 namespace NZ_walks.Migrations
 {
     [DbContext(typeof(NZ_walksDbContext))]
-    partial class NZ_walksDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260605023800_SeedInitialData")]
+    partial class SeedInitialData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -85,20 +88,20 @@ namespace NZ_walks.Migrations
                         new
                         {
                             Id = new Guid("3682e0fa-371f-4eac-87ba-4149c4aff6a0"),
-                            Code = "KRJ",
-                            Name = "Karaj"
+                            Code = "",
+                            Name = ""
                         },
                         new
                         {
                             Id = new Guid("5e21f34e-1134-45c8-a4a2-b5710f687f34"),
-                            Code = "SHZ",
-                            Name = "Shiraz"
+                            Code = "",
+                            Name = ""
                         },
                         new
                         {
                             Id = new Guid("5ed936c1-046a-4ff3-b257-d1243e1efc8e"),
-                            Code = "ESF",
-                            Name = "Esfehan"
+                            Code = "",
+                            Name = ""
                         });
                 });
 

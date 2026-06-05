@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NZ_walks.Data;
 
@@ -11,9 +12,11 @@ using NZ_walks.Data;
 namespace NZ_walks.Migrations
 {
     [DbContext(typeof(NZ_walksDbContext))]
-    partial class NZ_walksDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260605024031_SeedAdditionalData")]
+    partial class SeedAdditionalData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
