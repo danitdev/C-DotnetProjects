@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\C#DotnetProjects\\NZ_walks\\NZ_walks.csproj": {}
+    "E:\\workspace\\C#DotnetProjects\\NZ_walks\\NZ_walks.csproj": {}
   },
   "projects": {
-    "E:\\C#DotnetProjects\\NZ_walks\\NZ_walks.csproj": {
+    "E:\\workspace\\C#DotnetProjects\\NZ_walks\\NZ_walks.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\C#DotnetProjects\\NZ_walks\\NZ_walks.csproj",
+        "projectUniqueName": "E:\\workspace\\C#DotnetProjects\\NZ_walks\\NZ_walks.csproj",
         "projectName": "NZ_walks",
-        "projectPath": "E:\\C#DotnetProjects\\NZ_walks\\NZ_walks.csproj",
+        "projectPath": "E:\\workspace\\C#DotnetProjects\\NZ_walks\\NZ_walks.csproj",
         "packagesPath": "C:\\Users\\Asus\\.nuget\\packages\\",
-        "outputPath": "E:\\C#DotnetProjects\\NZ_walks\\obj\\",
+        "outputPath": "E:\\workspace\\C#DotnetProjects\\NZ_walks\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Asus\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -44,6 +44,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[8.0.4, )"
