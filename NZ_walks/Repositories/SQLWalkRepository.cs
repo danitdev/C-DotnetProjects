@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using NZ_walks.Data;
 using NZ_walks.Models.Domain;
 namespace NZ_walks.Repositories
@@ -19,6 +20,11 @@ namespace NZ_walks.Repositories
             await dbContext.Walks.AddAsync(walk);
             await dbContext.SaveChangesAsync();
             return walk;
+        }
+
+        public async Task<List<Walk>> GetAllAsync()
+        {
+            return await dbContext.Walks.ToListAsync();
         }
     }
 }
