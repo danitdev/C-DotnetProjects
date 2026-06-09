@@ -26,6 +26,10 @@ namespace NZ_walks.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] AddWalkReqDTO reqDto)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             Walk walkDomain = mapper.Map<Walk>(reqDto);
             walkDomain = await walkRepository.CreateAsync(walkDomain);
             WalkDTO clientDto = mapper.Map<WalkDTO>(walkDomain);
@@ -56,6 +60,10 @@ namespace NZ_walks.Controllers
         [Route("{Id:guid}")]
         public async Task<IActionResult> Update([FromRoute] Guid Id, [FromBody] UpdateWalkReqDTO reqDTO)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             Walk walkDomain = mapper.Map<Walk>(reqDTO);
             walkDomain = await walkRepository.UpdateAsync(Id, reqDTO);
             if (walkDomain == null)
