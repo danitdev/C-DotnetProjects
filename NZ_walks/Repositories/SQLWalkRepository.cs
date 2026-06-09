@@ -23,6 +23,18 @@ namespace NZ_walks.Repositories
             return walk;
         }
 
+        public async Task<Walk?> DeleteAsync(Guid Id)
+        {
+            Walk walkDomain = await dbContext.Walks.FirstOrDefaultAsync(x => x.Id == Id);
+            if (walkDomain == null)
+            {
+                return null;
+            }
+            dbContext.Walks.Remove(walkDomain);
+            await dbContext.SaveChangesAsync();
+            return walkDomain;
+        }
+
         public async Task<List<Walk>> GetAllAsync()
         {
             //with include we can add on navigation props

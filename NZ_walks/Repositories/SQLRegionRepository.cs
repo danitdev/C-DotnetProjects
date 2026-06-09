@@ -24,7 +24,7 @@ namespace NZ_walks.Repositories
 
         }
 
-        public async Task<Region> DeleteAsync(Guid id)
+        public async Task<Region?> DeleteAsync(Guid id)
         {
             Region existingRegion = await dbContext.Regions.FirstOrDefaultAsync(x => x.Id == id);
             if (existingRegion == null)
