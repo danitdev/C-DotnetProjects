@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using NZ_walks.CustomActionFilters;
 using NZ_walks.Models.Domain;
 using NZ_walks.Models.DTOs;
 using NZ_walks.Repositories;
@@ -24,12 +25,13 @@ namespace NZ_walks.Controllers
             this.walkRepository = walkRepository;
         }
         [HttpPost]
+        [ValidateModel]
         public async Task<IActionResult> Create([FromBody] AddWalkReqDTO reqDto)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+            // if (!ModelState.IsValid)
+            // {
+            //     return BadRequest(ModelState);
+            // }
             Walk walkDomain = mapper.Map<Walk>(reqDto);
             walkDomain = await walkRepository.CreateAsync(walkDomain);
             WalkDTO clientDto = mapper.Map<WalkDTO>(walkDomain);
@@ -57,13 +59,17 @@ namespace NZ_walks.Controllers
             return Ok(clientDto);
         }
         [HttpPut]
+        //for model attribute
+        [ValidateModel]
         [Route("{Id:guid}")]
         public async Task<IActionResult> Update([FromRoute] Guid Id, [FromBody] UpdateWalkReqDTO reqDTO)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+            //without model attribute validating models:
+            // if (!ModelState.IsValid)
+            // {
+            //     return BadRequest(ModelState);
+            // }
+            //with model attribute:
             Walk walkDomain = mapper.Map<Walk>(reqDTO);
             walkDomain = await walkRepository.UpdateAsync(Id, reqDTO);
             if (walkDomain == null)

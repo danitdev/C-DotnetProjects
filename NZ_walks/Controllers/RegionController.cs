@@ -8,6 +8,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using NZ_walks.CustomActionFilters;
 using NZ_walks.Data;
 using NZ_walks.Models.Domain;
 using NZ_walks.Models.DTOs;
@@ -74,12 +75,13 @@ namespace NZ_walks.Controllers
         }
         //POST region - create new region
         [HttpPost]
+        [ValidateModel]
         public async Task<IActionResult> Create([FromBody] AddRegionReqDTO reqDto)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+            // if (!ModelState.IsValid)
+            // {
+            //     return BadRequest(ModelState);
+            // }
             //map dto to domain model
             // Region reqDomain = new Region
             // {
@@ -106,13 +108,14 @@ namespace NZ_walks.Controllers
         }
         //Update Region
         [HttpPut]
+        [ValidateModel]
         [Route("{id:Guid}")]
         public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] UpdateRegionReqDTO reqDTO)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+            // if (!ModelState.IsValid)
+            // {
+            //     return BadRequest(ModelState);
+            // }
             // Region reqDomain = new Region
             // {
             //     Code = reqDTO.Code,
